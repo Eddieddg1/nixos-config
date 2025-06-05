@@ -9,15 +9,6 @@
 
       windowManager = {
         awesome.enable = true;
-        dwm = {
-          enable = true;
-          package = pkgs.dwm.overrideAttrs {
-            src = ./dwm;
-            patches = [
-              #./dwm-patches
-            ];
-          };
-        }; 
       };
     };
 
