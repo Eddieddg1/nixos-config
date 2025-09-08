@@ -2,7 +2,7 @@
 
 {
   # Don't forget password with passwd!
-  users.eddie.eddie = {
+  users.users.eddie = {
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "libvirtd" ];
     packages = with pkgs; [
