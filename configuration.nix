@@ -7,13 +7,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./nvidia.nix
-      ./systemd.nix
       ./networking.nix
       ./users.nix
       ./services.nix
-      ./nixvim/nixvim.nix
-      ./dotfiles.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -34,13 +30,14 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    initrd.kernelModules = [ "amdgpu" ];
   };
 
   time.timeZone = "Europe/Stockholm";
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
-    # keyMap = "se";
+    # keyMap = "se-us";
     useXkbConfig = true; # use xkb.options in tty.
   };
 
@@ -49,53 +46,48 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget
-    git
-    brave
-    qutebrowser
-    mpd
-    cantata
-    vesktop
-    kdePackages.kate
-    kdePackages.dolphin
+    adwaita-icon-theme
     alacritty
-    vlc
-    wineWowPackages.stable
-    winetricks
-    protontricks
-    xorg.xorgserver
-    xorg.xf86inputlibinput
-    xorg.xinit
-    w3m
-    fastfetch
-    htop
-    mangohud
-    gcc
-    zip
-    unzip
-    unrar
-    p7zip
-    pavucontrol
-    qbittorrent
-    tor-browser
-    file
-    spotify
     appimage-run
-    python3
+    blender-hip
+    brave
+    btop
+    cantata
+    fastfetch
+    file
+    git
+    htop
     libreoffice
-    nasm
     lutris
+    mangohud
+    mpd
+    nasm
+    odin-dev
+    pavucontrol
+    protontricks
+    p7zip
+    qbittorrent
     qemu
-    virt-manager
-    virt-viewer
+    rofi
+    rofi-mpd
     spice
     spice-gtk
     spice-protocol
-    win-virtio
+    spotify
+    unrar
+    unzip
+    vesktop
+    virt-manager
+    virt-viewer
+    wget
+    winetricks
+    wineWowPackages.stable
     win-spice
-    adwaita-icon-theme
-    rofi
-    rofi-mpd
+    win-virtio
+    xorg.xf86inputlibinput
+    xorg.xinit
+    xorg.xorgserver
+    zip
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system
@@ -119,7 +111,7 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 
 }
 

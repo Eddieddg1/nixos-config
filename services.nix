@@ -4,8 +4,8 @@
   services = {
     xserver = {
       enable = true;
-      videoDrivers = [ "nvidia" ];
-      xkb.layout = "se";
+      videoDrivers = [ "amdgpu" ];
+      xkb.layout = "se-us";
 
       windowManager = {
         awesome.enable = true;
