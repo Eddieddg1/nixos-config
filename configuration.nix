@@ -37,8 +37,8 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
-    # keyMap = "se-us";
-    useXkbConfig = true; # use xkb.options in tty.
+    keyMap = "se-us";
+    # useXkbConfig = true; # use xkb.options in tty.
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -48,13 +48,11 @@
   environment.systemPackages = with pkgs; [
     adwaita-icon-theme
     alacritty
-    appimage-run
     blender-hip
     brave
     btop
     cantata
     fastfetch
-    file
     git
     htop
     libreoffice
@@ -62,31 +60,19 @@
     mangohud
     mpd
     nasm
+    nemo
     odin-dev
     pavucontrol
     protontricks
     p7zip
     qbittorrent
-    qemu
-    rofi
-    rofi-mpd
-    spice
-    spice-gtk
-    spice-protocol
     spotify
     unrar
     unzip
     vesktop
-    virt-manager
-    virt-viewer
     wget
     winetricks
     wineWowPackages.stable
-    win-spice
-    win-virtio
-    xorg.xf86inputlibinput
-    xorg.xinit
-    xorg.xorgserver
     zip
   ];
 

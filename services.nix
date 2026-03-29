@@ -2,16 +2,6 @@
 
 {
   services = {
-    xserver = {
-      enable = true;
-      videoDrivers = [ "amdgpu" ];
-      xkb.layout = "se-us";
-
-      windowManager = {
-        awesome.enable = true;
-      };
-    };
-
     desktopManager = {
       plasma6.enable = true;
     };
