@@ -55,7 +55,7 @@
     fastfetch
     git
     htop
-    libreoffice
+    libreoffice-fresh
     lutris
     mangohud
     mpd
@@ -74,6 +74,7 @@
     winetricks
     wineWowPackages.stable
     zip
+    zoxide
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system
