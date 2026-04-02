@@ -86,6 +86,10 @@
     gimp
     git
     htop
+    hunspell
+    hunspellDicts.en_US
+    hyphenDicts.en_US
+    jdk25
     libreoffice-fresh
     lutris
     mangohud
@@ -96,6 +100,7 @@
     obsidian
     odin
     pavucontrol
+    prismlauncher
     protontricks
     p7zip
     qbittorrent
