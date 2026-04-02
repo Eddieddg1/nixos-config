@@ -25,20 +25,47 @@
     dconf.enable = true;
   };
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   boot = {
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    initrd.kernelModules = [ "amdgpu" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [
+      "drm.edid_firmware=DP-2:edid/1920x1080.bin"
+      "video=DP-2:1920x1080@60"
+    ];
   };
 
   time.timeZone = "Europe/Stockholm";
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "sv_SE.UTF-8";
+      LC_IDENTIFICATION = "sv_SE.UTF-8";
+      LC_MEASUREMENT = "sv_SE.UTF-8";
+      LC_MONETARY = "sv_SE.UTF-8";
+      LC_NAME = "sv_SE.UTF-8";
+      LC_NUMERIC = "sv_SE.UTF-8";
+      LC_PAPER = "sv_SE.UTF-8";
+      LC_TELEPHONE = "sv_SE.UTF-8";
+      LC_TIME = "sv_SE.UTF-8";
+    };
+  };
+
   console = {
     font = "Lat2-Terminus16";
-    keyMap = "se-us";
-    # useXkbConfig = true; # use xkb.options in tty.
+    # keyMap = "sv-latin1";
+    useXkbConfig = true; # use xkb.options in tty.
+  };
+
+  security = {
+    rtkit.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -52,24 +79,33 @@
     brave
     btop
     cantata
+    eza
     fastfetch
+    ffmpeg
+    fluffychat
+    gimp
     git
     htop
     libreoffice-fresh
     lutris
     mangohud
     mpd
+    mumble
     nasm
     nemo
-    odin-dev
+    obsidian
+    odin
     pavucontrol
     protontricks
     p7zip
     qbittorrent
+    kdePackages.qtbase
+    kdePackages.qtmultimedia
     spotify
     unrar
     unzip
     vesktop
+    vim
     wget
     winetricks
     wineWowPackages.stable

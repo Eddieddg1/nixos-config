@@ -3,7 +3,7 @@
 {
   imports = [ ./openvpn.nix ];
   networking = {
-    hostName = "VenerableCreator";
+    hostName = "VenerableDesktop";
     networkmanager.enable = true;
 
     proxy = {
@@ -13,8 +13,8 @@
 
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 31975 53 ];
-      allowedUDPPorts = [ 31975 53 ];
+      allowedTCPPorts = [ 25565 ];
+      allowedUDPPorts = [ 25565 ];
     };
   };
 }

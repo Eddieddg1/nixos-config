@@ -2,11 +2,13 @@
 
 {
   # Don't forget password with passwd!
-  users.users.eddie = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "video" "libvirtd" ];
-    packages = with pkgs; [
-      tree
-    ];
+  users.users = {
+    eddie = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" "video" "libvirtd" "networkmanager" "input" "audio" ];
+      packages = with pkgs; [
+        tree
+      ];
+    };
   };
 }
