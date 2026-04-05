@@ -10,6 +10,7 @@
       ./networking.nix
       ./users.nix
       ./services.nix
+      ./systemd.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -25,9 +26,14 @@
     dconf.enable = true;
   };
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+    amdgpu = {
+      overdrive.enable = true;
+    };
   };
 
   boot = {
@@ -64,6 +70,8 @@
     useXkbConfig = true; # use xkb.options in tty.
   };
 
+  hardware.bluetooth.enable = true;
+
   security = {
     rtkit.enable = true;
   };
@@ -90,7 +98,10 @@
     hunspellDicts.en_US
     hyphenDicts.en_US
     jdk25
+    jdk8_headless
+    lact
     libreoffice-fresh
+    lmstudio
     lutris
     mangohud
     mpd
@@ -99,6 +110,7 @@
     nemo
     obsidian
     odin
+    open-webui
     pavucontrol
     prismlauncher
     protontricks
