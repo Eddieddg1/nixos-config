@@ -7,10 +7,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./personal-hardware.nix
+      ./environment.nix
       ./networking.nix
       ./users.nix
       ./services.nix
       ./systemd.nix
+      ./searx.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -36,18 +39,6 @@
     };
   };
 
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-    kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [
-      "drm.edid_firmware=DP-2:edid/1920x1080.bin"
-      "video=DP-2:1920x1080@60"
-    ];
-  };
-
   time.timeZone = "Europe/Stockholm";
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -62,6 +53,14 @@
       LC_TELEPHONE = "sv_SE.UTF-8";
       LC_TIME = "sv_SE.UTF-8";
     };
+    inputMethod = {
+      enable = true;
+      type = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-hangul
+        kdePackages.fcitx5-qt
+      ];
+    };
   };
 
   console = {
@@ -74,61 +73,17 @@
 
   security = {
     rtkit.enable = true;
+    acme = {
+      acceptTerms = true;
+      defaults.email = "lol.bender@outlook.com";
+      defaults.webroot = "/var/lib/acme/acme-challenge/";
+      certs."search.venerablecreator.de".group = config.services.nginx.group;
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
   
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    adwaita-icon-theme
-    alacritty
-    blender-hip
-    brave
-    btop
-    cantata
-    eza
-    fastfetch
-    ffmpeg
-    fluffychat
-    gimp
-    git
-    htop
-    hunspell
-    hunspellDicts.en_US
-    hyphenDicts.en_US
-    jdk25
-    jdk8_headless
-    lact
-    libreoffice-fresh
-    lmstudio
-    lutris
-    mangohud
-    mpd
-    mumble
-    nasm
-    nemo
-    obsidian
-    odin
-    open-webui
-    pavucontrol
-    prismlauncher
-    protontricks
-    p7zip
-    qbittorrent
-    kdePackages.qtbase
-    kdePackages.qtmultimedia
-    spotify
-    unrar
-    unzip
-    vesktop
-    vim
-    wget
-    winetricks
-    wineWowPackages.stable
-    zip
-    zoxide
-  ];
+
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

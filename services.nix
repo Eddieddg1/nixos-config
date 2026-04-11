@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   services = {
@@ -18,6 +18,13 @@
 
     flatpak.enable = true;
 
+    hardware.openrgb = { 
+      enable = true; 
+      package = pkgs.openrgb-with-all-plugins; 
+      motherboard = "amd"; 
+      server.port = 6742; 
+    };
+
     murmur = {
       allowHtml = false;
       autobanAttempts = 3;
@@ -26,7 +33,7 @@
       bandwidth = 510000;
       bonjour = false;
       clientCertRequired = false;
-      enable = true;
+      enable = false;
       imgMsgLength = 4096;
       logDays = 28;
       registerName = "FUCK YOU!";
@@ -37,6 +44,40 @@
       password = "$MURMURD_PASSWORD";
       environmentFile = "/etc/nixos/secrets/murmur.env";
       openFirewall = true;
+    };
+
+    nginx = {
+      enable = true;
+      recommendedGzipSettings = true;
+      recommendedOptimisation = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+      virtualHosts = {
+        "search.venerablecreator.de" = {
+          forceSSL = true;
+          useACMEHost = "search.venerablecreator.de";
+          acmeRoot = config.security.acme.defaults.webroot;
+
+          locations = {
+            "/" = {
+              extraConfig = ''
+                auth_basic "Restricted";
+                auth_basic_user_file "/etc/nginx/searx.htpasswd";
+
+                include ${pkgs.nginx}/conf/uwsgi_params;
+                uwsgi_pass unix:/run/searx/searx.sock;
+
+                uwsgi_param HTTP_HOST $host;
+                uwsgi_param HTTP_CONNECTION $http_connection;
+                uwsgi_param HTTP_X_FORWARDED_PROTO $scheme;
+                uwsgi_param HTTP_X_REAL_IP $remote_addr;
+                uwsgi_param HTTP_X_FORWARDED_FOR $proxy_add_x_forwarded_for;
+
+              '';
+            };
+          };
+        };
+      };
     };
 
     pulseaudio.enable = false;
