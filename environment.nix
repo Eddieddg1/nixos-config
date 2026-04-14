@@ -28,6 +28,7 @@
       jdk8_headless
       kdePackages.qtbase
       kdePackages.qtmultimedia
+      krita
       lact
       libreoffice-fresh
       librewolf

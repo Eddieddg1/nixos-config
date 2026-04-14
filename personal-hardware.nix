@@ -11,8 +11,6 @@
     };
 
     kernelParams = [
-      "drm.edid_firmware=DP-2:edid/1920x1080.bin"
-      "video=DP-2:1920x1080@60"
     ];
 
     loader = {
