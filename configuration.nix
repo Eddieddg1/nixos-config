@@ -14,6 +14,7 @@
       ./services.nix
       ./systemd.nix
       ./searx.nix
+      ./virt.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
