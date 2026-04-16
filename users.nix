@@ -6,7 +6,7 @@
     users = {
       eddie = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "video" "libvirtd" "networkmanager" "input" "audio" ];
+        extraGroups = [ "wheel" "video" "networkmanager" "input" "audio" ];
         packages = with pkgs; [
           tree
         ];

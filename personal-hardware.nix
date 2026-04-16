@@ -7,22 +7,15 @@
 
   boot = {
     initrd = {
-      kernelModules = [ "bcache" ];
+      kernelModules = [ "amdgpu" "bcache" ];
     };
 
-    kernelParams = [
-    ];
+    kernelModules = [ "kvm-amd" ];
+    kernelParams = [ ];
 
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-    };
-
-    swraid = { 
-      enable = true;
-      mdadmConf = ''
-        MAILADDR root
-      '';
     };
 
     kernelPackages = pkgs.linuxPackages_latest;

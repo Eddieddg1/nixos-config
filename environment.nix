@@ -51,7 +51,6 @@
       protontricks
       p7zip
       qbittorrent
-      qemu
       searxng
       spotify
       thunderbird
@@ -60,7 +59,6 @@
       vesktop
       vim-full
       vimpc
-      virt-manager
       wget
       winetricks
       wineWowPackages.stable

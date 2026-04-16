@@ -16,8 +16,6 @@
       
       allowedTCPPorts = [ 25565 80 443 ];
       allowedUDPPorts = [ 25565 80 443 ];
-
-      trustedInterfaces = [ "virbr0" ];
     };
   };
 }

@@ -6,8 +6,6 @@
       plasma6.enable = true;
     };
 
-    # printing.enable = true;
-
     xserver = {
       enable = true;
       xkb = {
